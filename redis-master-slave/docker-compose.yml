@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+   redis-master:
+     container_name: redis-master
+     image: redis
+     command: redis-server --requirepass 123456 --masterauth 123456 
+     ports:  
+        - '6380:6379'
+     networks:
+        - redis
+   slave1:
+     container_name: redis_slave1
+     image: redis
+     command: redis-server --slaveof redis-master 6379 --requirepass 123456 --masterauth 123456
+     ports: 
+       - '6381:6379'
+     networks:
+       - redis
+   slave2:
+     container_name: redis_slave2
+     image: redis
+     command: redis-server --slaveof redis-master 6379 --requirepass 123456 --masterauth 123456
+     ports: 
+       - '6382:6379'
+     networks:
+       - redis
+
+networks:
+   redis:

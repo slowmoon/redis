@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+   master1: &conf
+      container_name: master1
+      image: redis
+      command: redis-server /etc/redis/redis.conf
+      volumes: 
+         - "./6388/data:/data"
+         - "./6388/6388.conf:/etc/redis/redis.conf"
+      network_mode: host 
+   master2:
+      <<: *conf
+      container_name: master2
+      volumes:
+         - "/data"
+         - "./6488/6488.conf:/etc/redis/redis.conf"
+   master3:
+      <<: *conf
+      container_name: master3
+      volumes:
+         - "/data"
+         - "./6588/6588.conf:/etc/redis/redis.conf"
+   master4:
+      <<: *conf
+      container_name: master4
+      volumes:
+         - "/data"
+         - "./6688/6688.conf:/etc/redis/redis.conf"
+   master5:
+      <<: *conf
+      container_name: master5
+      volumes:
+         - "/data"
+         - "./6788/6788.conf:/etc/redis/redis.conf"
+   master6:
+      <<: *conf
+      container_name: master6
+      volumes:
+         - "/data"
+         - "./6888/6888.conf:/etc/redis/redis.conf"
+         
+      
